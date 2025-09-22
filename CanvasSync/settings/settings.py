@@ -68,7 +68,7 @@ class Settings(object):
 
         # Get the path pointing to the settings file.
         self.settings_path = os.path.abspath(os.path.expanduser(u"~")
-                                             + u"/.CanvasSync.settings")
+                                             + u"/.config/CanvasSync/.CanvasSync.settings")
 
         # Initialize user prompt class, used to get information from the user
         # via the terminal
@@ -198,6 +198,8 @@ class Settings(object):
         print(ANSI.format(u"\n\nThese settings will be saved", u"announcer"))
 
         # Write password encrypted settings to hidden file in home directory
+        # First, make sure the directory exists
+        os.makedirs(os.path.dirname(self.settings_path), exist_ok=True)
         with open(self.settings_path, u"wb") as out_file:
             settings = self.sync_path + u"\n" + self.domain + u"\n" + self.token + u"\n"
 

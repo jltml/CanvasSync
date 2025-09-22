@@ -44,7 +44,7 @@ def encrypt(message):
 
     print(u"\nPlease enter a password to encrypt the settings file:")
     hashed_password = bcrypt.hashpw(getpass.getpass().encode(), bcrypt.gensalt())
-    with open(os.path.expanduser(u"~") + u"/.CanvasSync.pw", "wb") as pass_file:
+    with open(os.path.expanduser(u"~") + u"/.config/CanvasSync/.CanvasSync.pw", "wb") as pass_file:
         # Fix TypeError: a bytes-like object is required, not 'str'
         pass_file.write(str.encode(hashed_password))
 
@@ -66,7 +66,7 @@ def decrypt(message, password):
     """
 
     # Load the locally stored bcrypt hashed password (answer)
-    path = os.path.expanduser(u"~") + u"/.CanvasSync.pw"
+    path = os.path.expanduser(u"~") + u"/.config/CanvasSync/.CanvasSync.pw"
     if not os.path.exists(path):
         return False
 

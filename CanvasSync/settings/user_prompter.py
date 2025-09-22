@@ -107,7 +107,8 @@ def ask_for_sync_path():
         sync_path = input(u"\nEnter a relative or absolute path to sync to (~/Desktop/Canvas etc.):\n$ ")
 
         # Expand tilde if present in the sync_path
-        if u"~" in sync_path:
+        # edited by Jack
+        if sync_path[0] == "~":
             sync_path = sync_path.replace(u"~", os.path.expanduser(u"~"))
         sync_path = os.path.abspath(sync_path)
 
