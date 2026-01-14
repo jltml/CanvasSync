@@ -93,8 +93,8 @@ class Settings(object):
             self.set_settings()
             return True
 
-        with open(self.settings_path, u"rb") as settings_f:
-            messages = settings_f.read().decode(u"utf-8").split(u"\n")
+        with open(self.settings_path, u"r") as settings_f:
+            messages = settings_f.read().split(u"\n")
 
         # Set sync path, domain and auth token
         self.sync_path, self.domain, self.token = messages[:3]
@@ -183,7 +183,7 @@ class Settings(object):
         # Write settings to hidden file in home directory
         # First, make sure the directory exists
         os.makedirs(os.path.dirname(self.settings_path), exist_ok=True)
-        with open(self.settings_path, u"wb") as out_file:
+        with open(self.settings_path, u"w") as out_file:
             settings = self.sync_path + u"\n" + self.domain + u"\n" + self.token + u"\n"
 
             for course in self.courses_to_sync:
