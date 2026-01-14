@@ -125,7 +125,7 @@ def run_canvas_sync():
 
     # If -S or --sync was specified, sync and exit
     if manual_sync:
-        do_sync(settings, password)
+        do_sync(settings)
         sys.exit()
 
     # If here, CanvasSync was launched without parameters, show main screen
@@ -151,13 +151,13 @@ def main_menu(settings):
     elif to_do == u"show_help":
         usage.help()
     else:
-        do_sync(settings, "")
+        do_sync(settings)
 
 
-def do_sync(settings, password=None):
+def do_sync(settings):
     # Initialize the Instructure Api object used to make API
     # calls to the Canvas server
-    valid_token = settings.load_settings(password)
+    valid_token = settings.load_settings()
     if not valid_token:
         settings.print_auth_token_reset_error()
         sys.exit()

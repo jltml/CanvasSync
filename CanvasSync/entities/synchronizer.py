@@ -41,7 +41,7 @@ class Synchronizer(CanvasEntity):
         """
 
         if not settings.is_loaded():
-            settings.load_settings("")
+            settings.load_settings()
 
         # Start sync by clearing the console window
         helpers.clear_console()
